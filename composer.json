@@ -1,0 +1,48 @@
+{
+    "name": "eventconnect/omnipay-payrix",
+    "version": "1.0.0-dev",
+    "description": "Payrix driver for the Omnipay PHP payment processing library",
+    "keywords": [
+        "omnipay",
+        "payrix"
+    ],
+    "homepage": "https://github.com/RoomRoster/omnipay-payrix",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "EventConnect Software, LLC",
+            "email": "developer@eventconnect.io",
+            "homepage": "https://eventconnect.io"
+        }
+    ],
+    "require": {
+        "omnipay/common": "^3"
+    },
+    "require-dev": {
+        "omnipay/tests": "^3",
+        "squizlabs/php_codesniffer": "^3",
+        "phpro/grumphp": "^0.14"
+    },
+    "autoload": {
+        "psr-4": {
+            "Omnipay\\Payrix\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "League\\Payrix\\Test\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "phpunit",
+        "check-style": "phpcs -p --standard=PSR2 src/",
+        "fix-style": "phpcbf -p --standard=PSR2 src/"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
