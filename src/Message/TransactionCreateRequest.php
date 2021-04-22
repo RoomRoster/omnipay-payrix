@@ -19,7 +19,7 @@ class TransactionCreateRequest extends AbstractRequest
     {
         return array(
             'expiration' => $this->getExpirationDate(),
-            'merchant' => $this->getMerchant(),
+            'merchant_id' => $this->getMerchantId(),
             'origin' => 2,
             'payment' => array(
                 'number' => $this->getCard()->getNumber(),
