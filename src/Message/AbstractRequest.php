@@ -13,18 +13,18 @@ abstract class AbstractRequest extends BaseAbstractRequest
     /**
      * @return string
      */
-    public function getKey()
+    public function getApiKey()
     {
-        return $this->getParameter('key');
+        return $this->getParameter('api_key');
     }
 
     /**
      * @param $value
      * @return AbstractRequest
      */
-    public function setKey($value)
+    public function setApiKey($value)
     {
-        return $this->setParameter('key', $value);
+        return $this->setParameter('api_key', $value);
     }
 
     /**
@@ -86,7 +86,7 @@ abstract class AbstractRequest extends BaseAbstractRequest
     {
         $url = $this->getEndpoint();
         $headers = array(
-            'APIKEY' => $this->getKey(),
+            'APIKEY' => $this->getApiKey(),
             'Content-Type' => 'application/json',
         );
         $response = $this->httpClient->request('POST', $url, $headers, json_encode($data));

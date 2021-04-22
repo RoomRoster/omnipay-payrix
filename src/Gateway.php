@@ -34,7 +34,7 @@ class Gateway extends AbstractGateway
     {
         return array(
             'expiration_date' => date('my', strtotime('+1 year')),
-            'key' => '',
+            'api_key' => '',
             'testMode' => false,
             'merchant' => '',
         );
@@ -43,18 +43,18 @@ class Gateway extends AbstractGateway
     /**
      * @return string
      */
-    public function getKey()
+    public function getApiKey()
     {
-        return $this->getParameter('key');
+        return $this->getParameter('api_key');
     }
 
     /**
      * @param $value
      * @return Gateway
      */
-    public function setKey($value)
+    public function setApiKey($value)
     {
-        return $this->setParameter('key', $value);
+        return $this->setParameter('api_key', $value);
     }
 
     /**
