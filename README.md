@@ -14,7 +14,30 @@ composer require league/omnipay eventconnect/omnipay-payrix
 ```
 
 ## Basic Usage
-TODO
+```php
+$gateway = Omnipay::create('Payrix');
+$gateway->setApiKey(API_KEY);
+$gateway->setMerchantId(MERCHANT_ID);
+
+$formData = [
+    'number' => '4242424242424242',
+    'expiryMonth' => '6',
+    'expiryYear' => '2030',
+    'cvv' => '123'
+];
+$response = $gateway->purchase([
+    'amount' => '10.00',
+    'currency' => 'CAD',
+    'card' => $formData,
+])->send();
+
+if ($response->isSuccessful()) {
+    // Payment was successful
+} else {
+    // Payment failed
+}
+```
+For general usage instructions, please see the main [Omnipay](https://github.com/thephpleague/omnipay) repository.
 
 ## Test Mode
 TODO
