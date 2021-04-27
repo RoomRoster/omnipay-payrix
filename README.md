@@ -40,7 +40,8 @@ if ($response->isSuccessful()) {
 For general usage instructions, please see the main [Omnipay](https://github.com/thephpleague/omnipay) repository.
 
 ## Limitations
-Currently only purchase transactions are supported by this package.
+Currently this package supports the following methods:
+- purchase
 
 ## Test Mode
 TODO
