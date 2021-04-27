@@ -3,7 +3,7 @@
 **Payrix driver for the Omnipay PHP payment processing library**
 
 [Omnipay](https://github.com/thephpleague/omnipay) is a framework agnostic, multi-gateway payment
-processing library for PHP. This package implements Stripe support for Omnipay.
+processing library for PHP. This package implements Payrix support for Omnipay.
 
 ## Installation
 
@@ -44,7 +44,11 @@ Currently this package supports the following methods:
 - purchase
 
 ## Test Mode
-TODO
+Operations can be run in test mode by enabling test mode:
+```php
+$gateway->setTestMode(true);
+```
+_Note: Test mode requires a test API key and Merchant ID._
 
 ## Support
 
