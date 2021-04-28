@@ -3,7 +3,6 @@
 namespace Omnipay\Payrix;
 
 use Omnipay\Tests\GatewayTestCase;
-use Omnipay\Common\CreditCard;
 
 class GatewayTest extends GatewayTestCase
 {
@@ -15,21 +14,15 @@ class GatewayTest extends GatewayTestCase
         parent::setUp();
 
         $this->gateway = new Gateway($this->getHttpClient(), $this->getHttpRequest());
-
-        $this->options = array(
-            'amount' => '10.00',
-            'card' => $this->getValidCard(),
-        );
     }
 
-//    public function testAuthorize()
-//    {
-//        $this->setMockHttpResponse('TransactionCreateSuccess.txt');
-//
-//        $response = $this->gateway->authorize($this->options)->send();
-//
-//        $this->assertTrue($response->isSuccessful());
-//        $this->assertEquals('12345', $response->getTransactionReference());
-//        $this->assertNull($response->getMessage());
-//    }
+    public function testPurchase()
+    {
+        $request = $this->gateway->purchase(array(
+            'amount' => '10.00'
+        ));
+
+        $this->assertInstanceOf('Omnipay\Payrix\Message\TransactionCreateRequest', $request);
+        $this->assertSame('10.00', $request->getAmount());
+    }
 }
