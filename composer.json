@@ -34,7 +34,7 @@
         }
     },
     "scripts": {
-        "test": "phpunit",
+        "test": "phpunit --coverage-text",
         "check-style": "phpcs -p --standard=PSR2 src/",
         "fix-style": "phpcbf -p --standard=PSR2 src/"
     },
