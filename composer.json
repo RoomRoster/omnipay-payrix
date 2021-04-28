@@ -1,6 +1,6 @@
 {
     "name": "eventconnect/omnipay-payrix",
-    "version": "1.0.0-dev",
+    "version": "1.0.0",
     "description": "Payrix driver for the Omnipay PHP payment processing library",
     "keywords": [
         "omnipay",
