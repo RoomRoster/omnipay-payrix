@@ -1,0 +1,7 @@
+HTTP/1.1 200 OK
+Server: cloudflare
+Date: Tue, 27 Apr 2021 23:50:01 GMT
+Content-Type: application/json; charset=UTF-8
+Status: 200 OK
+
+{"response":{"data":[{"payment":{"number":"1111"},"id":"t1_txn_6088a329472c671e4963e30","merchant":"t1_mer_607efb718a5f291ed0b77cd","type":2,"expiration":"0421","origin":1,"total":1,"swiped":0,"emv":0,"signature":0}],"details":{"requestId":1},"errors":[]}}

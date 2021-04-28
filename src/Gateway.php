@@ -58,10 +58,9 @@ class Gateway extends AbstractGateway
     }
 
     /**
-     * @param $id
      * @return string
      */
-    public function getMerchantId($id)
+    public function getMerchantId()
     {
         return $this->getParameter('merchant_id');
     }
@@ -73,6 +72,23 @@ class Gateway extends AbstractGateway
     public function setMerchantId($value)
     {
         return $this->setParameter('merchant_id', $value);
+    }
+
+    /**
+     * @return string
+     */
+    public function getExpirationDate()
+    {
+        return $this->getParameter('expiration_date');
+    }
+
+    /**
+     * @param $value
+     * @return Gateway
+     */
+    public function setExpirationDate($value)
+    {
+        return $this->setParameter('expiration_date', $value);
     }
 
     /**
