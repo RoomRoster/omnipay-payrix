@@ -5,6 +5,7 @@ namespace Omnipay\Payrix\Message;
 use Omnipay\Common\Exception\InvalidRequestException;
 use Omnipay\Common\Message\AbstractRequest as BaseAbstractRequest;
 use Omnipay\Common\Message\AbstractResponse;
+use Omnipay\Payrix\Message\Response;
 
 abstract class AbstractRequest extends BaseAbstractRequest
 {
@@ -199,6 +200,8 @@ abstract class AbstractRequest extends BaseAbstractRequest
         $response = $this->httpClient->request('POST', $url, $headers, json_encode($data));
 
         $data = json_decode($response->getBody(), true);
+        $data['status'] = $response->getStatusCode();
+        $data['message'] = $response->getReasonPhrase();
 
         return $this->createResponse($data);
     }

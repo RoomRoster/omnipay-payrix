@@ -79,7 +79,7 @@ class Gateway extends AbstractGateway
      */
     public function purchase(array $options = array())
     {
-        return $this->createRequest('\Omnipay\Payrix\Message\TransactionCreateRequest', $options);
+        return $this->createRequest('\Omnipay\Payrix\Message\PurchaseRequest', $options);
     }
 
     public function __call($name, $arguments)
