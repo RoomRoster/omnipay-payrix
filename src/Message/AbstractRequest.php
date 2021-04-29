@@ -2,11 +2,85 @@
 
 namespace Omnipay\Payrix\Message;
 
+use Omnipay\Common\Exception\InvalidRequestException;
 use Omnipay\Common\Message\AbstractRequest as BaseAbstractRequest;
 use Omnipay\Common\Message\AbstractResponse;
 
 abstract class AbstractRequest extends BaseAbstractRequest
 {
+    /**
+     * Originated at a credit card terminal.
+     *
+     * @var int
+     */
+    const TERMINAL_ORIGIN = 1;
+
+    /**
+     * Originated through an eCommerce system.
+     *
+     * @var int
+     */
+    const ECOMMERCE_ORIGIN = 2;
+
+    /**
+     * Originated as a mail order or telephone order transaction.
+     *
+     * @var int
+     */
+    const MAIL_ORDER_ORIGIN = 3;
+
+    /**
+     * Originated with Apple Pay.
+     *
+     * @var int
+     */
+    const APPLE_PAY_ORIGIN = 4;
+
+    /**
+     * Originated as a Successful 3D Secure transaction.
+     *
+     * @var int
+     */
+    const SECURE_3D_SUCCESS_ORIGIN = 5;
+
+    /**
+     * Originated as an Attempted 3D Secure transaction.
+     *
+     * @var int
+     */
+    const SECURE_3D_ATTEMPT_ORIGIN = 6;
+
+    /**
+     * Originated as a recurring transaction on the card.
+     *
+     * @var int
+     */
+    const RECURRING_ORIGIN = 7;
+
+    /**
+     * Originated in a Payframe.
+     *
+     * @var int
+     */
+    const PAYFRAME_ORIGIN = 8;
+
+    /**
+     * Allowable values for the origin of the transaction.
+     *
+     * @link https://test-portal.payrix.com/docs/api#txnsPost
+     * @var array
+     */
+    const VALID_ORIGIN_VALUES = [
+        self::TERMINAL_ORIGIN,
+        self::ECOMMERCE_ORIGIN,
+        self::MAIL_ORDER_ORIGIN,
+        self::APPLE_PAY_ORIGIN,
+        self::SECURE_3D_SUCCESS_ORIGIN,
+        self::SECURE_3D_ATTEMPT_ORIGIN,
+        self::RECURRING_ORIGIN,
+        self::PAYFRAME_ORIGIN,
+    ];
+
     protected $liveEndpoint = 'https://api.payrix.com';
     protected $testEndpoint = 'https://test-api.payrix.com';
 
@@ -42,6 +116,73 @@ abstract class AbstractRequest extends BaseAbstractRequest
     public function setMerchantId($value)
     {
         return $this->setParameter('merchant_id', $value);
+    }
+
+    /**
+     * Sets the origin.
+     *
+     * @param $value
+     * @return AbstractRequest
+     */
+    public function setOrigin($value)
+    {
+        return $this->setParameter('origin', $value);
+    }
+
+    /**
+     * Gets the origin.
+     *
+     * @return int
+     */
+    public function getOrigin()
+    {
+        return $this->getParameter('origin');
+    }
+
+    /**
+     * Validate the request.
+     *
+     * @param string ... a variable length list of required parameters
+     * @throws InvalidRequestException
+     * @see Omnipay\Common\ParametersTrait::validate()
+     */
+    public function validate(...$args)
+    {
+        foreach ($args as $key) {
+            $value = $this->parameters->get($key);
+
+            switch ($key) {
+                case 'api_key':
+                case 'merchant_id':
+                    if (!isset($value)) {
+                        throw new InvalidRequestException("The $key parameter is required");
+                    } elseif (empty($value)) {
+                        throw new InvalidRequestException("The $key parameter cannot be empty");
+                    }
+                    break;
+
+                case 'origin':
+                    if (!isset($value)) {
+                        throw new InvalidRequestException("The $key parameter is required");
+                    } elseif (!in_array($value, self::VALID_ORIGIN_VALUES)) {
+                        throw new InvalidRequestException("The $key is invalid");
+                    }
+                    break;
+
+                case 'order':
+                case 'description':
+                    if (isset($value) && strlen($value) > 1000) {
+                        throw new InvalidRequestException("The $key parameter cannot be longer than 20 characters");
+                    }
+                    break;
+
+                default:
+                    if (!isset($value)) {
+                        throw new InvalidRequestException("The $key parameter is required");
+                    }
+                    break;
+            }
+        }
     }
 
     /**
