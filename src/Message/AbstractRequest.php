@@ -45,23 +45,6 @@ abstract class AbstractRequest extends BaseAbstractRequest
     }
 
     /**
-     * @return integer|string
-     */
-    public function getExpirationDate()
-    {
-        return $this->getParameter('expiration_date');
-    }
-
-    /**
-     * @param $value
-     * @return AbstractRequest
-     */
-    public function setExpirationDate($value)
-    {
-        return $this->setParameter('expiration_date', $value);
-    }
-
-    /**
      * @param mixed $data
      * @return Response
      */
