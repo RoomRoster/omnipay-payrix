@@ -24,7 +24,7 @@ class TransactionCreateRequest extends AbstractRequest
             'payment' => array(
                 'number' => $this->getCard()->getNumber(),
             ),
-            'total' => $this->getTotal(),
+            'total' => $this->getAmount(),
             'type' => 1,
         );
     }

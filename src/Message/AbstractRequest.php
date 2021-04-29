@@ -47,23 +47,6 @@ abstract class AbstractRequest extends BaseAbstractRequest
     /**
      * @return integer|string
      */
-    public function getTotal()
-    {
-        return $this->getParameter('total');
-    }
-
-    /**
-     * @param $value
-     * @return AbstractRequest
-     */
-    public function setTotal($value)
-    {
-        return $this->setParameter('total', $value);
-    }
-
-    /**
-     * @return integer|string
-     */
     public function getExpirationDate()
     {
         return $this->getParameter('expiration_date');

@@ -22,7 +22,7 @@ class TransactionCreateRequestTest extends TestCase
                 'expiration_date' => '1222',
                 'merchant_id' => 't1_mer_607efb718a5f291ed0b77ce',
                 'card' => new CreditCard($this->getValidCard()),
-                'total' => 10.99,
+                'amount' => '10.99',
             )
         );
     }
@@ -34,6 +34,6 @@ class TransactionCreateRequestTest extends TestCase
         $this->assertSame('1222', $data['expiration']);
         $this->assertSame('t1_mer_607efb718a5f291ed0b77ce', $data['merchant_id']);
         $this->assertSame([ 'number' => '4111111111111111' ], $data['payment']);
-        $this->assertSame(10.99, $data['total']);
+        $this->assertSame('10.99', $data['total']);
     }
 }
