@@ -75,7 +75,7 @@ class Gateway extends AbstractGateway
 
     /**
      * @param array $options
-     * @return Message\TransactionCreateRequest
+     * @return Message\PurchaseRequest
      */
     public function purchase(array $options = array())
     {
