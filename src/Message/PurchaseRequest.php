@@ -117,6 +117,7 @@ class PurchaseRequest extends AbstractRequest
      */
     protected function addBillingData(array &$data)
     {
+        /** @var CreditCard $creditCard */
         if ($card = $this->getCard()) {
             // A card is present, so include billing/shipping details
             $data['email'] = $card->getEmail();
