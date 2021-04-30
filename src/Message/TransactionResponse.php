@@ -15,7 +15,7 @@ class TransactionResponse extends Response
     public function isSuccessful()
     {
         if (isset($this->data['response']['data'][0]['status'])) {
-            return $this->data['response']['data'][0]['status'] == static::APPROVED_STATUS;
+            return $this->data['response']['data'][0]['status'] === static::APPROVED_STATUS;
         }
 
         return isset($this->data['response']['data'][0]['id']);
