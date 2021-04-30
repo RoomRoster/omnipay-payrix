@@ -8,9 +8,9 @@ class ResponseTest extends TestCase
 {
     public function testPurchaseSuccess()
     {
-        $httpResponse = $this->getMockHttpResponse('TransactionSuccess.txt');
+        $httpResponse = $this->getMockHttpResponse('PurchaseSuccess.txt');
         $data = json_decode($httpResponse->getBody(), true);
-        $response = new TransactionResponse($this->getMockRequest(), $data);
+        $response = new PurchaseResponse($this->getMockRequest(), $data);
 
         $this->assertTrue($response->isSuccessful());
         $this->assertEquals('t1_txn_6088a329472c671e4963e30', $response->getTransactionReference());
