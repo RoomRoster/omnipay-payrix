@@ -57,7 +57,7 @@ class PurchaseRequest extends AbstractRequest
          * The total amount of this Transaction.
          * This field is specified as an integer in cents.
          *
-         * @link https://test-portal.payrix.com/docs/api#txnsPost
+         * @link https://portal.payrix.com/docs/api#txnsPost
          */
         $data['total'] = $this->getAmountInteger();
 
