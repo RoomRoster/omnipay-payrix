@@ -141,52 +141,6 @@ abstract class AbstractRequest extends BaseAbstractRequest
     }
 
     /**
-     * Validate the request.
-     *
-     * @param string ... a variable length list of required parameters
-     * @throws InvalidRequestException
-     * @see Omnipay\Common\ParametersTrait::validate()
-     */
-    public function validate(...$args)
-    {
-        foreach ($args as $key) {
-            $value = $this->parameters->get($key);
-
-            switch ($key) {
-                case 'api_key':
-                case 'merchant_id':
-                    if (!isset($value)) {
-                        throw new InvalidRequestException("The $key parameter is required");
-                    } elseif (empty($value)) {
-                        throw new InvalidRequestException("The $key parameter cannot be empty");
-                    }
-                    break;
-
-                case 'origin':
-                    if (!isset($value)) {
-                        throw new InvalidRequestException("The $key parameter is required");
-                    } elseif (!in_array($value, self::VALID_ORIGIN_VALUES)) {
-                        throw new InvalidRequestException("The $key is invalid");
-                    }
-                    break;
-
-                case 'order':
-                case 'description':
-                    if (isset($value) && strlen($value) > 1000) {
-                        throw new InvalidRequestException("The $key parameter cannot be longer than 20 characters");
-                    }
-                    break;
-
-                default:
-                    if (!isset($value)) {
-                        throw new InvalidRequestException("The $key parameter is required");
-                    }
-                    break;
-            }
-        }
-    }
-
-    /**
      * @param mixed $data
      * @return Response
      */

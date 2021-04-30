@@ -43,7 +43,7 @@ class PurchaseRequest extends AbstractRequest
      */
     public function getData()
     {
-        $this->validate('api_key', 'merchant_id', 'origin', 'amount', 'order', 'description');
+        $this->validate('amount');
 
         $data = array(
             'merchant' => $this->getMerchantId(),
