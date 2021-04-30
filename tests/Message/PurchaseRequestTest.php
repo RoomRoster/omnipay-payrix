@@ -35,6 +35,6 @@ class PurchaseRequestTest extends TestCase
         $this->assertSame('t1_mer_id', $data['merchant']);
         $this->assertSame(2, $data['origin']);
         $this->assertSame('4111111111111111', $data['payment']['number']);
-        $this->assertSame('10.99', $data['total']);
+        $this->assertSame(1099, $data['total']);
     }
 }

@@ -50,9 +50,16 @@ class PurchaseRequest extends AbstractRequest
             'signature' => 0,
             'pin' => 0,
             'origin' => $this->getOrigin(),
-            'total' => $this->getAmount(),
             'currency' => $this->getCurrency(),
         );
+
+        /**
+         * The total amount of this Transaction.
+         * This field is specified as an integer in cents.
+         *
+         * @link https://test-portal.payrix.com/docs/api#txnsPost
+         */
+        $data['total'] = $this->getAmountInteger();
 
         $transactionId = $this->getTransactionId();
         if (! empty($transactionId)) {
