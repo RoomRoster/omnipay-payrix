@@ -68,7 +68,7 @@ abstract class AbstractRequest extends BaseAbstractRequest
     /**
      * Allowable values for the origin of the transaction.
      *
-     * @link https://test-portal.payrix.com/docs/api#txnsPost
+     * @link https://portal.payrix.com/docs/api#txnsPost
      * @var array
      */
     const VALID_ORIGIN_VALUES = [
