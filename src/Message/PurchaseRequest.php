@@ -31,64 +31,6 @@ class PurchaseRequest extends AbstractRequest
     const CVV_NOT_PROVIDED_STATUS = 'notProvided';
 
     /**
-     * American Express
-     *
-     * @var int
-     */
-    const AMEX_PAYMENT_METHOD = 1;
-
-    /**
-     * Visa
-     *
-     * @var int
-     */
-    const VISA_PAYMENT_METHOD = 2;
-
-    /**
-     * MasterCard
-     *
-     * @var int
-     */
-    const MASTERCARD_PAYMENT_METHOD = 3;
-
-    /**
-     * Diners Club
-     *
-     * @var int
-     */
-    const DINERS_CLUB_PAYMENT_METHOD = 4;
-
-    /**
-     * Discover
-     *
-     * @var int
-     */
-    const DISCOVER_PAYMENT_METHOD = 5;
-
-    /**
-     * List of valid credit_card brands to payment methods
-     *
-     * @var array
-     */
-    protected $supported_brands = array(
-        CreditCard::BRAND_AMEX => self::AMEX_PAYMENT_METHOD,
-        CreditCard::BRAND_VISA => self::VISA_PAYMENT_METHOD,
-        CreditCard::BRAND_MASTERCARD => self::MASTERCARD_PAYMENT_METHOD,
-        CreditCard::BRAND_DINERS_CLUB => self::DINERS_CLUB_PAYMENT_METHOD,
-        CreditCard::BRAND_DISCOVER => self::DISCOVER_PAYMENT_METHOD
-    );
-
-    /**
-     * Gets the supported credit_card brands.
-     *
-     * @return array
-     */
-    public function getSupportedBrands()
-    {
-        return $this->supported_brands;
-    }
-
-    /**
      * @return string
      */
     protected function getEndpoint()
@@ -150,7 +92,6 @@ class PurchaseRequest extends AbstractRequest
             $data['type'] = static::CC_SALE_TYPE;
             $data['expiration'] = $creditCard->getExpiryDate('my');
             $data['payment'] = array(
-                'method' => $this->getCardPaymentMethod(),
                 'number' => $creditCard->getNumber()
             );
 
@@ -184,21 +125,6 @@ class PurchaseRequest extends AbstractRequest
             $data['country'] = $card->getBillingCountry();
             $data['phone'] = $card->getBillingPhone();
         }
-    }
-
-    /**
-     * Gets the card payment method.
-     *
-     * @return int
-     */
-    protected function getCardPaymentMethod()
-    {
-        $creditCard = $this->getCard();
-        $creditCardBrand = $creditCard->getBrand();
-
-        return isset($this->supported_brands, $creditCardBrand)
-            ? $this->supported_brands[$creditCardBrand]
-            : 0;
     }
 
     /**
