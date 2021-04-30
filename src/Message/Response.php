@@ -59,7 +59,7 @@ class Response extends AbstractResponse
     public function isSuccessful()
     {
         if (isset($this->data['response']['data'][0]['status'])) {
-            return $this->data['response']['data'][0]['status'] != static::FAILED_STATUS;
+            return $this->data['response']['data'][0]['status'] !== static::FAILED_STATUS;
         }
 
         return false;
