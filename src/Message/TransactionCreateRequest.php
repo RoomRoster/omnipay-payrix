@@ -77,7 +77,7 @@ class TransactionCreateRequest extends AbstractRequest
         }
 
         $this->addPayment($data);
-        $this->addBillingData($data);
+        // $this->addBillingData($data);
 
         return $data;
     }
