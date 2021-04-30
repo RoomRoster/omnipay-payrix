@@ -5,7 +5,7 @@ namespace Omnipay\Payrix\Message;
 /**
  * Response
  */
-class PurchaseResponse extends Response
+class TransactionResponse extends Response
 {
     /**
      * Is the response successful?

@@ -4,9 +4,9 @@ namespace Omnipay\Payrix\Message;
 
 use Omnipay\Common\CreditCard;
 use Omnipay\Payrix\Message\AbstractRequest;
-use Omnipay\Payrix\Message\PurchaseResponse;
+use Omnipay\Payrix\Message\TransactionResponse;
 
-class PurchaseRequest extends AbstractRequest
+class TransactionCreateRequest extends AbstractRequest
 {
     /**
      * Credit Card Only: Sale Transaction.
@@ -141,6 +141,6 @@ class PurchaseRequest extends AbstractRequest
      */
     protected function createResponse($data)
     {
-        return $this->response = new PurchaseResponse($this, $data);
+        return $this->response = new TransactionResponse($this, $data);
     }
 }

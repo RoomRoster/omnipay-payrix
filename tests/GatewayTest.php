@@ -22,7 +22,7 @@ class GatewayTest extends GatewayTestCase
             'amount' => '10.00'
         ));
 
-        $this->assertInstanceOf('Omnipay\Payrix\Message\PurchaseRequest', $request);
+        $this->assertInstanceOf('Omnipay\Payrix\Message\TransactionCreateRequest', $request);
         $this->assertSame('10.00', $request->getAmount());
     }
 }

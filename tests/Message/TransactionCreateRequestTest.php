@@ -5,10 +5,10 @@ namespace Omnipay\Payrix\Message;
 use Omnipay\Common\CreditCard;
 use Omnipay\Tests\TestCase;
 
-class PurchaseRequestTest extends TestCase
+class TransactionCreateRequestTest extends TestCase
 {
     /**
-     * @var PurchaseRequest
+     * @var TransactionCreateRequest
      */
     private $request;
 
@@ -16,7 +16,7 @@ class PurchaseRequestTest extends TestCase
     {
         parent::setUp();
 
-        $this->request = new PurchaseRequest($this->getHttpClient(), $this->getHttpRequest());
+        $this->request = new TransactionCreateRequest($this->getHttpClient(), $this->getHttpRequest());
         $this->request->initialize(
             array(
                 'api_key' => 'test_key',
