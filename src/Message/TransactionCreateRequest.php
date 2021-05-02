@@ -41,7 +41,7 @@ class TransactionCreateRequest extends AbstractRequest
     /**
      * @return array
      */
-    public function getData()
+    public function getData(): array
     {
         $this->validate('amount');
 
