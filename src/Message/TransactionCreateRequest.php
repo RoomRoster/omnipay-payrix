@@ -2,9 +2,8 @@
 
 namespace Omnipay\Payrix\Message;
 
+use League\ISO3166\ISO3166;
 use Omnipay\Common\CreditCard;
-use Omnipay\Payrix\Message\AbstractRequest;
-use Omnipay\Payrix\Message\TransactionResponse;
 
 class TransactionCreateRequest extends AbstractRequest
 {
@@ -162,6 +161,12 @@ class TransactionCreateRequest extends AbstractRequest
 
             if ($creditCard->getBillingPhone()) {
                 $data['phone'] = $creditCard->getBillingPhone();
+            }
+
+            $data['country'] = $creditCard->getBillingCountry();
+            if (strlen($data['country']) === 2) {
+                $countryData = (new ISO3166())->alpha2($data['country']);
+                $data['country'] = $countryData['alpha3'];
             }
         }
     }
