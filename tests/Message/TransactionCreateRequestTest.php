@@ -19,8 +19,8 @@ class TransactionCreateRequestTest extends TestCase
         $this->request = new TransactionCreateRequest($this->getHttpClient(), $this->getHttpRequest());
         $this->request->initialize(
             array(
-                'api_key' => 'test_key',
-                'merchant_id' => 't1_mer_id',
+                'expiration_date' => '1222',
+                'merchant_id' => 't1_mer_607efb718a5f291ed0b77ce',
                 'origin' => 2,
                 'card' => new CreditCard($this->getValidCard()),
                 'amount' => '10.99',
@@ -32,9 +32,9 @@ class TransactionCreateRequestTest extends TestCase
     {
         $data = $this->request->getData();
 
-        $this->assertSame('t1_mer_id', $data['merchant']);
-        $this->assertSame(2, $data['origin']);
-        $this->assertSame('4111111111111111', $data['payment']['number']);
-        $this->assertSame(1099, $data['total']);
+        $this->assertSame('1222', $data['expiration']);
+        $this->assertSame('t1_mer_607efb718a5f291ed0b77ce', $data['merchant_id']);
+        $this->assertSame([ 'number' => '4111111111111111' ], $data['payment']);
+        $this->assertSame('10.99', $data['total']);
     }
 }

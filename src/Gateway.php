@@ -33,6 +33,7 @@ class Gateway extends AbstractGateway
     public function getDefaultParameters()
     {
         return array(
+            'expiration_date' => date('my', strtotime('+1 year')),
             'api_key' => '',
             'testMode' => false,
             'merchant_id' => '',
@@ -71,6 +72,23 @@ class Gateway extends AbstractGateway
     public function setMerchantId($value)
     {
         return $this->setParameter('merchant_id', $value);
+    }
+
+    /**
+     * @return string
+     */
+    public function getExpirationDate()
+    {
+        return $this->getParameter('expiration_date');
+    }
+
+    /**
+     * @param $value
+     * @return Gateway
+     */
+    public function setExpirationDate($value)
+    {
+        return $this->setParameter('expiration_date', $value);
     }
 
     /**

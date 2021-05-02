@@ -97,7 +97,7 @@ class TransactionCreateRequest extends AbstractRequest
             $creditCard->validate();
 
             $data['type'] = static::CC_SALE_TYPE;
-            $data['expiration'] = $creditCard->getExpiryDate('my');
+            $data['expiration'] = $this->getExpirationDate();
             $data['payment'] = array(
                 'number' => $creditCard->getNumber()
             );
