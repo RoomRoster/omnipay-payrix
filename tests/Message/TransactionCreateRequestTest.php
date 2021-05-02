@@ -20,6 +20,7 @@ class TransactionCreateRequestTest extends TestCase
         $this->request->initialize(
             array(
                 'merchant_id' => 't1_mer_607efb718a5f291ed0b77ce',
+                'origin' => 2,
                 'card' => new CreditCard($this->getValidCard()),
                 'amount' => '10.99',
             )

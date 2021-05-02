@@ -8,20 +8,20 @@ namespace Omnipay\Payrix\Message;
 class TransactionResponse extends Response
 {
     /**
-     * @return bool
+     * Is the response successful?
+     *
+     * @return boolean
      */
     public function isSuccessful()
     {
-        return isset($this->data['response']['data'][0]['id']);
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getTransactionReference()
-    {
-        if (isset($this->data['response']['data'][0]['id'])) {
-            return $this->data['response']['data'][0]['id'];
+        if (isset($this->data['response']['data'][0]['status'])) {
+            return $this->data['response']['data'][0]['status'] === static::APPROVED_STATUS;
         }
+
+        if (isset($this->data['errors'][0]) || isset($this->data['response']['errors'][0])) {
+            return false;
+        }
+
+        return isset($this->data['response']['data'][0]['id']);
     }
 }
