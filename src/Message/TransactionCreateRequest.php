@@ -15,14 +15,16 @@ class TransactionCreateRequest extends AbstractRequest
     /**
      * @return array
      */
-    public function getData()
+    public function getData(): array
     {
+        $card = $this->getCard();
+
         return array(
-            'expiration' => $this->getExpirationDate(),
+            'expiration' => $card->getExpiryDate('my'),
             'merchant_id' => $this->getMerchantId(),
             'origin' => 2,
             'payment' => array(
-                'number' => $this->getCard()->getNumber(),
+                'number' => $card->getNumber(),
             ),
             'total' => $this->getAmount(),
             'type' => 1,
