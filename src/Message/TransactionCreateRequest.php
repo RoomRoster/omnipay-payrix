@@ -77,7 +77,7 @@ class TransactionCreateRequest extends AbstractRequest
         }
 
         $this->addPayment($data);
-        $this->addBillingData($data);
+        // $this->addBillingData($data);
 
         return $data;
     }
@@ -118,20 +118,51 @@ class TransactionCreateRequest extends AbstractRequest
     protected function addBillingData(array &$data)
     {
         /** @var CreditCard $creditCard */
-        if ($card = $this->getCard()) {
-            // A card is present, so include billing/shipping details
-            $data['email'] = $card->getEmail();
+        if ($creditCard = $this->getCard()) {
+            // A card is present, so include billing details
+            if ($creditCard->getEmail()) {
+                $data['email'] = $creditCard->getEmail();
+            }
 
-            $data['first'] = $card->getBillingFirstName();
-            $data['last'] = $card->getBillingLastName();
-            $data['company'] = $card->getBillingCompany();
-            $data['address1'] = $card->getBillingAddress1();
-            $data['address2'] = $card->getBillingAddress2();
-            $data['city'] = $card->getBillingCity();
-            $data['state'] = $card->getBillingState();
-            $data['zip'] = $card->getBillingPostcode();
-            $data['country'] = $card->getBillingCountry();
-            $data['phone'] = $card->getBillingPhone();
+            if ($creditCard->getBillingFirstName()) {
+                $data['first'] = $creditCard->getBillingFirstName();
+            }
+
+            if ($creditCard->getBillingLastName()) {
+                $data['last'] = $creditCard->getBillingLastName();
+            }
+
+            if ($creditCard->getBillingCompany()) {
+                $data['company'] = $creditCard->getBillingCompany();
+            }
+
+            if ($creditCard->getBillingAddress1()) {
+                $data['address1'] = $creditCard->getBillingAddress1();
+            }
+
+            if ($creditCard->getBillingAddress2()) {
+                $data['address2'] = $creditCard->getBillingAddress2();
+            }
+
+            if ($creditCard->getBillingCity()) {
+                $data['city'] = $creditCard->getBillingCity();
+            }
+
+            if ($creditCard->getBillingPostcode()) {
+                $data['zip'] = $creditCard->getBillingPostcode();
+            }
+
+            if ($creditCard->getBillingState()) {
+                $data['state'] = $creditCard->getBillingState();
+            }
+
+            if ($creditCard->getBillingCountry()) {
+                $data['country'] = $creditCard->getBillingCountry();
+            }
+
+            if ($creditCard->getBillingPhone()) {
+                $data['phone'] = $creditCard->getBillingPhone();
+            }
         }
     }
 
