@@ -15,7 +15,11 @@ class PurchaseResponse extends Response
     public function isSuccessful()
     {
         if (isset($this->data['response']['data'][0]['status'])) {
-            return $this->data['response']['data'][0]['status'] == static::APPROVED_STATUS;
+            return $this->data['response']['data'][0]['status'] === static::APPROVED_STATUS;
+        }
+
+        if (isset($this->data['errors'][0]) || isset($this->data['response']['errors'][0])) {
+            return false;
         }
 
         return isset($this->data['response']['data'][0]['id']);

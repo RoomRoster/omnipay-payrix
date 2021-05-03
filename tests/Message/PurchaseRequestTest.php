@@ -19,8 +19,7 @@ class PurchaseRequestTest extends TestCase
         $this->request = new PurchaseRequest($this->getHttpClient(), $this->getHttpRequest());
         $this->request->initialize(
             array(
-                'api_key' => 'test_key',
-                'merchant_id' => 't1_mer_id',
+                'merchant_id' => 't1_mer_607efb718a5f291ed0b77ce',
                 'origin' => 2,
                 'card' => new CreditCard($this->getValidCard()),
                 'amount' => '10.99',
@@ -32,9 +31,18 @@ class PurchaseRequestTest extends TestCase
     {
         $data = $this->request->getData();
 
-        $this->assertSame('t1_mer_id', $data['merchant']);
-        $this->assertSame(2, $data['origin']);
-        $this->assertSame('4111111111111111', $data['payment']['number']);
-        $this->assertSame(1099, $data['total']);
+        $this->assertSame('t1_mer_607efb718a5f291ed0b77ce', $data['merchant_id']);
+        $this->assertSame('10.99', $data['total']);
+    }
+
+    public function testCardData()
+    {
+        $card = $this->getValidCard();
+        $this->request->setCard($card);
+        $data = $this->request->getData();
+
+        $expiryDate = gmdate('my', gmmktime(0, 0, 0, $card['expiryMonth'], 1, $card['expiryYear']));
+        $this->assertSame($expiryDate, $data['expiration']);
+        $this->assertSame([ 'number' => $card['number'] ], $data['payment']);
     }
 }

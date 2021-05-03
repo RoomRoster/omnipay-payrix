@@ -36,7 +36,29 @@ class Gateway extends AbstractGateway
             'api_key' => '',
             'testMode' => false,
             'merchant_id' => '',
+            'origin' => 1,
         );
+    }
+
+    /**
+     * Sets the origin.
+     *
+     * @param $value
+     * @return Gateway
+     */
+    public function setOrigin($value)
+    {
+        return $this->setParameter('origin', $value);
+    }
+
+    /**
+     * Gets the origin.
+     *
+     * @return int
+     */
+    public function getOrigin()
+    {
+        return $this->getParameter('origin');
     }
 
     /**

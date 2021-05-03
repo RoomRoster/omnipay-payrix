@@ -73,7 +73,7 @@ class Response extends AbstractResponse
     public function isPending()
     {
         if (isset($this->data['response']['data'][0]['status'])) {
-            return $this->data['response']['data'][0]['status'] == static::PENDING_STATUS;
+            return $this->data['response']['data'][0]['status'] === static::PENDING_STATUS;
         }
 
         return false;
@@ -133,7 +133,7 @@ class Response extends AbstractResponse
         if (isset($this->data['response']['data'][0]['id'])) {
             return $this->data['response']['data'][0]['id'];
         }
-        
+
         return null;
     }
 
@@ -147,7 +147,7 @@ class Response extends AbstractResponse
         if (isset($this->data['response']['data'][0]['order'])) {
             return $this->data['response']['data'][0]['order'];
         }
-        
+
         return '';
     }
 }
