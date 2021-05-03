@@ -16,7 +16,7 @@
     ],
     "require": {
         "omnipay/common": "^3",
-        "league/iso3166": "^3.0"
+        "league/iso3166": "2.1.5"
     },
     "require-dev": {
         "omnipay/tests": "^3",
