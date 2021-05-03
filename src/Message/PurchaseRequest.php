@@ -2,10 +2,11 @@
 
 namespace Omnipay\Payrix\Message;
 
-use League\ISO3166\ISO3166;
 use Omnipay\Common\CreditCard;
+use Omnipay\Payrix\Message\AbstractRequest;
+use Omnipay\Payrix\Message\PurchaseResponse;
 
-class TransactionCreateRequest extends AbstractRequest
+class PurchaseRequest extends AbstractRequest
 {
     /**
      * Credit Card Only: Sale Transaction.
@@ -173,10 +174,10 @@ class TransactionCreateRequest extends AbstractRequest
 
     /**
      * @param $data
-     * @return TransactionResponse
+     * @return PurchaseResponse
      */
     protected function createResponse($data)
     {
-        return $this->response = new TransactionResponse($this, $data);
+        return $this->response = new PurchaseResponse($this, $data);
     }
 }
